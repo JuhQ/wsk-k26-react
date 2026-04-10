@@ -1,0 +1,21 @@
+table img {
+  max-width: 100px;
+}
+
+/* media item dialog */
+dialog {
+  position: fixed;
+  top: calc(50% - 100px);
+  height: 200px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  color: rgba(255, 255, 255, 0.87);
+  border: none;
+  border-radius: 10px;
+}
+
+dialog img,
+video {
+  height: 70%;
+  object-fit: contain;
+}
