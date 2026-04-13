@@ -1,15 +1,12 @@
+import { Link } from "react-router";
+
 const MediaItem = ({ item, setSelectedItem }) => {
   return (
     <tr key={item.filename}>
       <td>
-        <button
-          onClick={() => {
-            console.log("toimiiko?");
-            setSelectedItem(item);
-          }}
-        >
+        <Link to="/single" state={{ item }}>
           Klikkaa auki
-        </button>
+        </Link>
         <img src={item.thumbnail} />
       </td>
       <td>{item.title}</td>
