@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 const MediaItem = ({ item, setSelectedItem }) => {
   return (
@@ -14,6 +14,7 @@ const MediaItem = ({ item, setSelectedItem }) => {
       <td>{item.created_at}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
+      <td>{item.username}</td>
     </tr>
   );
 };
