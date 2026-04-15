@@ -42,10 +42,11 @@ const RegisterForm = () => {
 
   console.log(errors);
   return (
-    <>
-      <h1>Register</h1>
+    <article className="auth-card">
+      <p className="auth-kicker">Create account</p>
+      <h2 className="auth-title">Register</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="auth-field">
           <label htmlFor="registeruser">Username</label>
           <input
             name="username"
@@ -55,9 +56,11 @@ const RegisterForm = () => {
             onBlur={handleUserBlur}
             autoComplete="username"
           />
-          {errors && errors.username && <p>{errors.username}</p>}
+          {errors && errors.username && (
+            <p className="auth-error">{errors.username}</p>
+          )}
         </div>
-        <div>
+        <div className="auth-field">
           <label htmlFor="registerpassword">Password</label>
           <input
             name="password"
@@ -67,7 +70,7 @@ const RegisterForm = () => {
             autoComplete="current-password"
           />
         </div>
-        <div>
+        <div className="auth-field">
           <label htmlFor="registeremail">Email</label>
           <input
             name="email"
@@ -77,9 +80,11 @@ const RegisterForm = () => {
             autoComplete="current-email"
           />
         </div>
-        <button type="submit">Register</button>
+        <button className="auth-submit" type="submit">
+          Create account
+        </button>
       </form>
-    </>
+    </article>
   );
 };
 

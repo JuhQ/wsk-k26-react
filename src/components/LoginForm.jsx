@@ -29,10 +29,11 @@ const LoginForm = () => {
   }
 
   return (
-    <>
-      <h1>Login</h1>
+    <article className="auth-card">
+      <p className="auth-kicker">Welcome back</p>
+      <h2 className="auth-title">Sign in</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="auth-field">
           <label htmlFor="loginuser">Username</label>
           <input
             name="username"
@@ -42,7 +43,7 @@ const LoginForm = () => {
             autoComplete="username"
           />
         </div>
-        <div>
+        <div className="auth-field">
           <label htmlFor="loginpassword">Password</label>
           <input
             name="password"
@@ -52,9 +53,11 @@ const LoginForm = () => {
             autoComplete="current-password"
           />
         </div>
-        <button type="submit">Login</button>
+        <button className="auth-submit" type="submit">
+          Sign in
+        </button>
       </form>
-    </>
+    </article>
   );
 };
 
