@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { useAuthentication } from '../hooks/apiHooks';
 import useForm from '../hooks/formHooks';
 
@@ -6,6 +7,8 @@ const LoginForm = () => {
     username: '',
     password: '',
   };
+
+  const navigate = useNavigate();
 
   const { postLogin } = useAuthentication();
 
@@ -18,6 +21,8 @@ const LoginForm = () => {
     try {
       const loginResult = await postLogin(inputs);
       console.log(loginResult);
+      localStorage.setItem('token', loginResult.token);
+      navigate('/');
     } catch (error) {
       alert(error.message);
     }
