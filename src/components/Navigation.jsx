@@ -1,6 +1,6 @@
-import "./navigation.css";
+import './navigation.css';
 
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 const Navigation = () => {
   return (
@@ -14,6 +14,9 @@ const Navigation = () => {
         </li>
         <li>
           <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/logout">Logout</Link>
         </li>
         <li>
           <Link to="/profile">Profile</Link>
