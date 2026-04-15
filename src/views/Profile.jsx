@@ -22,7 +22,7 @@ const Profile = () => {
           <h2>Profile</h2>
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
-          <p>Created: {user.created_at}</p>
+          <p>Created: {new Date(user.created_at).toLocaleString('fi-FI')}</p>
         </>
       )}
     </>
