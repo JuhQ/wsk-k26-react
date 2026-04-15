@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '../hooks/apiHooks';
-import './Profile.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -23,21 +22,16 @@ const Profile = () => {
       {user ? (
         <article className="profile-card">
           <p className="profile-kicker">Account</p>
-          <h2 className="profile-title">Profile</h2>
+          <h2 className="profile-title">{user.username}</h2>
 
           <dl className="profile-grid">
-            <div className="profile-row">
-              <dt>Username</dt>
-              <dd>{user.username}</dd>
-            </div>
-
             <div className="profile-row">
               <dt>Email</dt>
               <dd>{user.email}</dd>
             </div>
 
             <div className="profile-row">
-              <dt>Created</dt>
+              <dt>Member since</dt>
               <dd>{new Date(user.created_at).toLocaleString('fi-FI')}</dd>
             </div>
           </dl>
@@ -45,7 +39,7 @@ const Profile = () => {
       ) : (
         <article className="profile-card profile-card-loading">
           <p className="profile-kicker">Loading</p>
-          <h2 className="profile-title">Fetching your profile...</h2>
+          <h2 className="profile-title">Fetching profile&hellip;</h2>
         </article>
       )}
     </section>
