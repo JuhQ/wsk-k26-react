@@ -26,7 +26,6 @@ const RegisterForm = () => {
 
   const handleUserBlur = async () => {
     const checkResult = await checkUser(inputs.username);
-    console.log(checkResult);
     if (!checkResult.available) {
       handleError('username', 'Username not available');
     }
@@ -46,7 +45,7 @@ const RegisterForm = () => {
             onBlur={handleUserBlur}
             autoComplete="username"
           />
-          <p>{errors?.username}</p>
+          {errors && errors.usename && <p>{errors.username}</p>}
         </div>
         <div>
           <label htmlFor="registerpassword">Password</label>
