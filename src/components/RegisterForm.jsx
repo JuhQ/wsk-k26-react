@@ -16,7 +16,6 @@ const RegisterForm = () => {
   );
 
   async function doRegister() {
-    // TODO: add register functionalities here
     const userResult = await postUser(inputs);
     console.log(userResult);
   }
