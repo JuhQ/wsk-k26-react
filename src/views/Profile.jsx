@@ -13,7 +13,7 @@ const Profile = () => {
     };
 
     getUser();
-  }, []);
+  }, [getUserByToken]);
 
   return (
     <>
@@ -21,6 +21,8 @@ const Profile = () => {
         <>
           <h2>Profile</h2>
           <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+          <p>Created: {user.created_at}</p>
         </>
       )}
     </>
