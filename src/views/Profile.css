@@ -1,0 +1,182 @@
+.profile-view {
+  --profile-bg-1: #fef6e4;
+  --profile-bg-2: #cde7ff;
+  --profile-bg-3: #d7ffd9;
+  --profile-ink: #13283b;
+  --profile-soft-ink: #335a70;
+  --profile-line: rgba(19, 40, 59, 0.16);
+
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100svh - 90px);
+  display: grid;
+  place-items: center;
+  padding: 2.25rem 1.1rem 3rem;
+  overflow: hidden;
+}
+
+.profile-view::before,
+.profile-view::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6px);
+  opacity: 0.55;
+  z-index: -2;
+}
+
+.profile-view::before {
+  width: 360px;
+  height: 360px;
+  top: -120px;
+  left: -120px;
+  background: radial-gradient(circle, var(--profile-bg-2), transparent 70%);
+}
+
+.profile-view::after {
+  width: 420px;
+  height: 420px;
+  right: -140px;
+  bottom: -160px;
+  background: radial-gradient(circle, var(--profile-bg-3), transparent 70%);
+}
+
+.profile-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    linear-gradient(
+      130deg,
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.55)
+    ),
+    linear-gradient(
+      120deg,
+      var(--profile-bg-1),
+      #fff7f0 33%,
+      #eef8ff 66%,
+      #f2fff6
+    );
+}
+
+.profile-card {
+  width: min(720px, 100%);
+  border: 1px solid var(--profile-line);
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: left;
+  color: var(--profile-ink);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(9px);
+  box-shadow:
+    0 14px 40px rgba(16, 29, 44, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  animation: profile-rise 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.profile-kicker {
+  margin: 0;
+  font:
+    700 0.72rem/1.2 'Courier New',
+    'SFMono-Regular',
+    Menlo,
+    monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--profile-soft-ink);
+}
+
+.profile-title {
+  margin: 0.45rem 0 1.5rem;
+  font:
+    800 clamp(1.8rem, 3vw, 2.6rem) / 1.05 'Trebuchet MS',
+    'Avenir Next Condensed',
+    'Franklin Gothic Medium',
+    sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.profile-grid {
+  margin: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.profile-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 120px) 1fr;
+  gap: 0.8rem;
+  align-items: baseline;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(19, 40, 59, 0.12);
+}
+
+.profile-row:last-child {
+  border-bottom: none;
+}
+
+.profile-row dt {
+  margin: 0;
+  font:
+    700 0.84rem/1.3 'Courier New',
+    'SFMono-Regular',
+    Menlo,
+    monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--profile-soft-ink);
+}
+
+.profile-row dd {
+  margin: 0;
+  font:
+    500 clamp(1rem, 1.8vw, 1.15rem) / 1.5 'Gill Sans',
+    'Trebuchet MS',
+    sans-serif;
+  word-break: break-word;
+}
+
+.profile-card-loading {
+  text-align: center;
+}
+
+.profile-card-loading .profile-title {
+  margin-bottom: 0;
+}
+
+@keyframes profile-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 680px) {
+  .profile-view {
+    min-height: calc(100svh - 80px);
+    padding-top: 1.1rem;
+  }
+
+  .profile-card {
+    border-radius: 18px;
+    padding: 1.2rem;
+  }
+
+  .profile-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    padding: 0.65rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-card {
+    animation: none;
+  }
+}
