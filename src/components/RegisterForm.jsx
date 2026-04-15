@@ -20,17 +20,27 @@ const RegisterForm = () => {
   } = useForm(doRegister, initValues);
 
   async function doRegister() {
-    const userResult = await postUser(inputs);
-    console.log(userResult);
+    try {
+      const userResult = await postUser(inputs);
+      console.log(userResult);
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   const handleUserBlur = async () => {
-    const checkResult = await checkUser(inputs.username);
-    if (!checkResult.available) {
-      handleError('username', 'Username not available');
+    clearErrors();
+    try {
+      const checkResult = await checkUser(inputs.username);
+      if (!checkResult.available) {
+        handleError('username', 'Username not available');
+      }
+    } catch {
+      // saa olla tyhjä
     }
   };
 
+  console.log(errors);
   return (
     <>
       <h1>Register</h1>
@@ -45,7 +55,7 @@ const RegisterForm = () => {
             onBlur={handleUserBlur}
             autoComplete="username"
           />
-          {errors && errors.usename && <p>{errors.username}</p>}
+          {errors && errors.username && <p>{errors.username}</p>}
         </div>
         <div>
           <label htmlFor="registerpassword">Password</label>
