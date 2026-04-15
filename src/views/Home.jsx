@@ -1,43 +1,13 @@
 import MediaItem from '../components/MediaItem';
 import MyComponent from '../components/MyComponent';
 import SingleView from '../components/SingleView';
-import { useEffect, useState } from 'react';
-import { fetchData } from '../utils/fetchData';
+import { useState } from 'react';
+import { useMedia } from '../hooks/apiHooks';
 
 const Home = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [mediaArray, setMediaArray] = useState([]);
 
-  useEffect(() => {
-    const getMedia = async () => {
-      try {
-        // hae mediat
-        const mediaItems = await fetchData(
-          import.meta.env.VITE_MEDIA_API + '/media',
-        );
-        // hae medioihin käyttäjätiedot
-        const mediaWithUsers = await Promise.all(
-          mediaItems.map(async (item) => {
-            const user = await fetchData(
-              import.meta.env.VITE_AUTH_API + '/users/' + item.user_id,
-            );
-            item.username = user.username;
-            return item;
-          }),
-        );
-
-        console.log(mediaWithUsers);
-
-        setMediaArray(mediaWithUsers);
-      } catch (error) {
-        console.error('fetchData: ' + error.message);
-      }
-    };
-
-    getMedia();
-  }, []);
-
-  console.log(mediaArray);
+  const { mediaArray } = useMedia();
 
   return (
     <>
