@@ -8,17 +8,29 @@ const RegisterForm = () => {
     email: '',
   };
 
-  const { postUser } = useUser();
+  const { postUser, checkUser } = useUser();
 
-  const { inputs, handleInputChange, handleSubmit } = useForm(
-    doRegister,
-    initValues,
-  );
+  const {
+    inputs,
+    handleInputChange,
+    handleSubmit,
+    errors,
+    handleError,
+    clearErrors,
+  } = useForm(doRegister, initValues);
 
   async function doRegister() {
     const userResult = await postUser(inputs);
     console.log(userResult);
   }
+
+  const handleUserBlur = async () => {
+    const checkResult = await checkUser(inputs.username);
+    console.log(checkResult);
+    if (!checkResult.available) {
+      handleError('username', 'Username not available');
+    }
+  };
 
   return (
     <>
@@ -31,8 +43,10 @@ const RegisterForm = () => {
             type="text"
             id="registeruser"
             onChange={handleInputChange}
+            onBlur={handleUserBlur}
             autoComplete="username"
           />
+          <p>{errors?.username}</p>
         </div>
         <div>
           <label htmlFor="registerpassword">Password</label>

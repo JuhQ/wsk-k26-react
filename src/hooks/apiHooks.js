@@ -48,7 +48,13 @@ const useUser = () => {
     return await fetchData(import.meta.env.VITE_AUTH_API + '/users', options);
   };
 
-  return { postUser };
+  const checkUser = async (username) => {
+    return await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users/username/' + username,
+    );
+  };
+
+  return { postUser, checkUser };
 };
 
 const useAuthentication = () => {

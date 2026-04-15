@@ -15,8 +15,12 @@ const LoginForm = () => {
   );
 
   async function doLogin() {
-    const loginResult = await postLogin(inputs);
-    console.log(loginResult);
+    try {
+      const loginResult = await postLogin(inputs);
+      console.log(loginResult);
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   return (
