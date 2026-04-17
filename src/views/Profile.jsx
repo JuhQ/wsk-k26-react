@@ -1,19 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useUser } from '../hooks/apiHooks';
+import { useUserContext } from "../hooks/contextHooks";
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
-  const { getUserByToken } = useUser();
-
-  useEffect(() => {
-    const getUser = async () => {
-      const token = localStorage.getItem('token');
-      const userResponse = await getUserByToken(token);
-      setUser(userResponse.user);
-    };
-
-    getUser();
-  }, [getUserByToken]);
+  const { user } = useUserContext();
 
   return (
     <section className="profile-view">
@@ -32,7 +20,7 @@ const Profile = () => {
 
             <div className="profile-row">
               <dt>Member since</dt>
-              <dd>{new Date(user.created_at).toLocaleString('fi-FI')}</dd>
+              <dd>{new Date(user.created_at).toLocaleString("fi-FI")}</dd>
             </div>
           </dl>
         </article>
