@@ -1,8 +1,15 @@
-import { Navigate } from 'react-router';
+import { Navigate } from "react-router";
+import { useEffect } from "react";
+import { useUserContext } from "../hooks/contextHooks";
 
 const Logout = () => {
-  localStorage.removeItem('token');
-  return <Navigate to="/login" />;
+  const { handleLogout } = useUserContext();
+
+  useEffect(() => {
+    handleLogout();
+  }, [handleLogout]);
+
+  return null;
 };
 
 export default Logout;
