@@ -46,9 +46,10 @@ const RegisterForm = () => {
       <p className="auth-kicker">Create account</p>
       <h2 className="auth-title">Register</h2>
       <form onSubmit={handleSubmit}>
-        <div className="auth-field">
+        <div className="flex w-4/5 flex-col">
           <label htmlFor="registeruser">Username</label>
           <input
+            className="my-2.5 rounded-md border p-2.5"
             name="username"
             type="text"
             id="registeruser"
@@ -60,9 +61,10 @@ const RegisterForm = () => {
             <p className="auth-error">{errors.username}</p>
           )}
         </div>
-        <div className="auth-field">
+        <div className="flex w-4/5 flex-col">
           <label htmlFor="registerpassword">Password</label>
           <input
+            className="my-2.5 rounded-md border p-2.5"
             name="password"
             type="password"
             id="registerpassword"
@@ -70,9 +72,10 @@ const RegisterForm = () => {
             autoComplete="current-password"
           />
         </div>
-        <div className="auth-field">
+        <div className="flex w-4/5 flex-col">
           <label htmlFor="registeremail">Email</label>
           <input
+            className="my-2.5 rounded-md border p-2.5"
             name="email"
             type="email"
             id="registeremail"
@@ -80,7 +83,10 @@ const RegisterForm = () => {
             autoComplete="current-email"
           />
         </div>
-        <button className="auth-submit" type="submit">
+        <button
+          className="my-2.5 block w-4/5 rounded-md bg-stone-500 text-stone-50 hover:bg-stone-700 transition-all duration-500 ease-in-out p-2.5"
+          type="submit"
+        >
           Create account
         </button>
       </form>

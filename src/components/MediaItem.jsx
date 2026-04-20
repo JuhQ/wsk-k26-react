@@ -15,6 +15,14 @@ const MediaItem = ({ item, setSelectedItem }) => {
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
       <td>{item.username}</td>
+      <td className="flex flex-col">
+        <button className="block w-full text-center bg-stone-500 text-stone-50 rounded-md p-2.5 my-2.5">
+          Modify
+        </button>
+        <button className="block w-full text-center bg-orange-500 text-stone-50 rounded-md p-2.5 my-2.5">
+          Delete
+        </button>
+      </td>
     </tr>
   );
 };

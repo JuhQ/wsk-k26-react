@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
-import { useAuthentication, useUser } from "../hooks/apiHooks";
+import { createContext, useState } from 'react';
+import { useAuthentication, useUser } from '../hooks/apiHooks';
 
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router';
 
 const UserContext = createContext(null);
 
@@ -14,21 +14,17 @@ const UserProvider = ({ children }) => {
 
   // login, logout and autologin functions are here instead of components
   const handleLogin = async (credentials) => {
-    try {
-      const loginResult = await postLogin(credentials);
-      localStorage.setItem("token", loginResult.token);
-      setUser(loginResult.user);
-      navigate("/");
-    } catch (e) {
-      console.log(e.message);
-    }
+    const loginResult = await postLogin(credentials);
+    localStorage.setItem('token', loginResult.token);
+    setUser(loginResult.user);
+    navigate('/');
   };
 
   const handleLogout = () => {
     try {
-      localStorage.removeItem("token");
+      localStorage.removeItem('token');
       setUser(null);
-      navigate("/");
+      navigate('/');
     } catch (e) {
       console.log(e.message);
     }
@@ -37,7 +33,7 @@ const UserProvider = ({ children }) => {
   // handleAutoLogin is used when the app is loaded to check if there is a valid token in local storage
   const handleAutoLogin = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
 
       if (token) {
         const userResponse = await getUserByToken(token);
