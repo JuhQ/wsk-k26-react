@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
-import { fetchData } from '../utils/fetchData';
+import { useCallback, useEffect, useState } from "react";
+
+import { fetchData } from "../utils/fetchData";
 
 const useMedia = (loadMedia = true) => {
   const [mediaArray, setMediaArray] = useState([]);
@@ -8,13 +9,13 @@ const useMedia = (loadMedia = true) => {
       try {
         // hae mediat
         const mediaItems = await fetchData(
-          import.meta.env.VITE_MEDIA_API + '/media',
+          import.meta.env.VITE_MEDIA_API + "/media",
         );
         // hae medioihin käyttäjätiedot
         const mediaWithUsers = await Promise.all(
           mediaItems.map(async (item) => {
             const user = await fetchData(
-              import.meta.env.VITE_AUTH_API + '/users/' + item.user_id,
+              import.meta.env.VITE_AUTH_API + "/users/" + item.user_id,
             );
             item.username = user.username;
             return item;
@@ -25,43 +26,62 @@ const useMedia = (loadMedia = true) => {
 
         setMediaArray(mediaWithUsers);
       } catch (error) {
-        console.error('fetchData: ' + error.message);
+        console.error("fetchData: " + error.message);
       }
     };
     if (loadMedia) {
       getMedia();
     }
   }, [loadMedia]);
-  return { mediaArray };
+
+  const postMedia = async (file, inputs, token) => {
+    const data = {
+      ...inputs,
+      ...file,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    };
+
+    return await fetchData(import.meta.env.VITE_MEDIA_API + "/media", options);
+  };
+
+  return { mediaArray, postMedia };
 };
 
 const useUser = () => {
   const postUser = async (inputs) => {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(inputs),
     };
 
-    return await fetchData(import.meta.env.VITE_AUTH_API + '/users', options);
+    return await fetchData(import.meta.env.VITE_AUTH_API + "/users", options);
   };
 
   const checkUser = async (username) => {
     return await fetchData(
-      import.meta.env.VITE_AUTH_API + '/users/username/' + username,
+      import.meta.env.VITE_AUTH_API + "/users/username/" + username,
     );
   };
 
   const getUserByToken = useCallback(async (token) => {
     const options = {
       headers: {
-        authorization: 'Bearer ' + token,
+        authorization: "Bearer " + token,
       },
     };
     return await fetchData(
-      import.meta.env.VITE_AUTH_API + '/users/token',
+      import.meta.env.VITE_AUTH_API + "/users/token",
       options,
     );
   }, []);
@@ -72,14 +92,14 @@ const useUser = () => {
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
     const fetchOptions = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(inputs),
     };
     return await fetchData(
-      import.meta.env.VITE_AUTH_API + '/auth/login',
+      import.meta.env.VITE_AUTH_API + "/auth/login",
       fetchOptions,
     );
   };
@@ -87,4 +107,27 @@ const useAuthentication = () => {
   return { postLogin };
 };
 
-export { useMedia, useUser, useAuthentication };
+const useFile = () => {
+  const postFile = async (file, token) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        // huom tähän ei content-type headeria
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    };
+
+    return await fetchData(
+      import.meta.env.VITE_UPLOAD_SERVER + "/upload",
+      fetchOptions,
+    );
+  };
+
+  return { postFile };
+};
+
+export { useMedia, useUser, useAuthentication, useFile };

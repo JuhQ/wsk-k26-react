@@ -21,8 +21,8 @@ const App = () => {
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <UserProvider>
         <MyProvider>
-          <MyComponentA />
-          <MyComponentB />
+          {/* <MyComponentA />
+          <MyComponentB /> */}
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
@@ -37,14 +37,7 @@ const App = () => {
                   </ProtectedRoute>
                 }
               />
-              <Route
-                path="/upload"
-                element={
-                  <ProtectedRoute>
-                    <Upload />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/upload" element={<Upload />} />
               <Route path="/single" element={<Single />} />
             </Route>
           </Routes>
