@@ -6,7 +6,7 @@ const MediaItem = ({ item, setSelectedItem }) => {
   const { user } = useUserContext();
   const { deleteMedia } = useMedia();
 
-  const deleteItem = async (item) => {
+  const deleteItem = async () => {
     try {
       if (confirm('Poistetaanko ' + item.title)) {
         const token = localStorage.getItem('token');
@@ -43,7 +43,7 @@ const MediaItem = ({ item, setSelectedItem }) => {
                 Modify
               </button>
               <button
-                onClick={() => deleteItem(item)}
+                onClick={deleteItem}
                 className="block w-full text-center bg-orange-500 text-stone-50 rounded-md p-2.5 my-2.5"
               >
                 Delete
