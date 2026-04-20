@@ -1,8 +1,23 @@
 import { Link } from 'react-router';
 import { useUserContext } from '../hooks/contextHooks';
+import { useMedia } from '../hooks/apiHooks';
 
 const MediaItem = ({ item, setSelectedItem }) => {
   const { user } = useUserContext();
+  const { deleteMedia } = useMedia();
+
+  const deleteItem = async (item) => {
+    try {
+      if (confirm('Poistetaanko ' + item.title)) {
+        const token = localStorage.getItem('token');
+        await deleteMedia(item.media_id, token);
+        alert(item.title + ' deleted');
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <tr key={item.filename}>
       <td>
@@ -21,10 +36,16 @@ const MediaItem = ({ item, setSelectedItem }) => {
         {user &&
           (item.user_id === user.user_id || user.level_name === 'Admin') && (
             <>
-              <button className="block w-full text-center bg-stone-500 text-stone-50 rounded-md p-2.5 my-2.5">
+              <button
+                onClick={() => console.log('modify', item)}
+                className="block w-full text-center bg-stone-500 text-stone-50 rounded-md p-2.5 my-2.5"
+              >
                 Modify
               </button>
-              <button className="block w-full text-center bg-orange-500 text-stone-50 rounded-md p-2.5 my-2.5">
+              <button
+                onClick={() => deleteItem(item)}
+                className="block w-full text-center bg-orange-500 text-stone-50 rounded-md p-2.5 my-2.5"
+              >
                 Delete
               </button>
             </>
