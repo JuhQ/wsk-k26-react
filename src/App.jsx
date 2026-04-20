@@ -1,20 +1,21 @@
-import "./App.css";
+import './App.css';
 
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from 'react-router';
 
-import About from "./views/About";
-import Home from "./views/Home";
-import Layout from "./components/Layout";
-import Login from "./views/Login";
-import Logout from "./views/Logout";
-import MyComponentA from "./components/MyComponentA";
-import MyComponentB from "./components/MyComponentB";
-import { MyProvider } from "./contexts/MyContext";
-import Profile from "./views/Profile";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Single from "./views/Single";
-import Upload from "./views/Upload";
-import { UserProvider } from "./contexts/UserContext";
+import About from './views/About';
+import Home from './views/Home';
+import Layout from './components/Layout';
+import Login from './views/Login';
+import Logout from './views/Logout';
+import MyComponentA from './components/MyComponentA';
+import MyComponentB from './components/MyComponentB';
+import { MyProvider } from './contexts/MyContext';
+import Profile from './views/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
+import Single from './views/Single';
+import Upload from './views/Upload';
+import { UserProvider } from './contexts/UserContext';
+import Modify from './views/Modify';
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
               />
               <Route path="/upload" element={<Upload />} />
               <Route path="/single" element={<Single />} />
+              <Route path="/modify" element={<Modify />} />
             </Route>
           </Routes>
         </MyProvider>

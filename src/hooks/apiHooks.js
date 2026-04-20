@@ -65,7 +65,21 @@ const useMedia = (loadMedia = true) => {
     );
   };
 
-  const modifyMedia = async () => {};
+  const modifyMedia = async (id, inputs, token) => {
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(inputs),
+    };
+
+    return await fetchData(
+      import.meta.env.VITE_MEDIA_API + '/media/' + id,
+      options,
+    );
+  };
 
   return { mediaArray, postMedia, deleteMedia, modifyMedia };
 };

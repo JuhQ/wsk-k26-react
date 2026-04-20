@@ -36,11 +36,10 @@ const MediaItem = ({ item, setSelectedItem }) => {
         {user &&
           (item.user_id === user.user_id || user.level_name === 'Admin') && (
             <>
-              <button
-                onClick={() => console.log('modify', item)}
-                className="block w-full text-center bg-stone-500 text-stone-50 rounded-md p-2.5 my-2.5"
-              >
-                Modify
+              <button className="block w-full text-center bg-stone-500 text-stone-50 rounded-md p-2.5 my-2.5">
+                <Link to="/modify" state={{ item }}>
+                  Modify
+                </Link>
               </button>
               <button
                 onClick={deleteItem}
