@@ -55,6 +55,8 @@ const Likes = ({ media_id }) => {
       onClick={handleClick}
       className="my-2.5 block w-4/5 rounded-md bg-stone-500 text-stone-50 hover:bg-stone-700 transition-all duration-500 ease-in-out p-2.5"
     >
+      {userLike ? <span>&#x2665;</span> : <span>&#x2661;</span>}
+      &nbsp;
       {likes}
     </button>
   );
