@@ -177,6 +177,7 @@ const useLike = () => {
   };
 
   const deleteLike = async (like_id, token) => {
+    console.log('delete', like_id);
     const fetchOptions = {
       method: 'DELETE',
       headers: {
