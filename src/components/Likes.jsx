@@ -18,7 +18,7 @@ const Likes = ({ media_id }) => {
 
   useEffect(() => {
     const fetchUserLike = async () => {
-      const userLikeResponse = await getUserLike(token);
+      const userLikeResponse = await getUserLike(media_id, token);
       console.log(userLikeResponse);
     };
 

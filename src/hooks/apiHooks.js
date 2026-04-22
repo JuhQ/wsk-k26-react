@@ -190,7 +190,7 @@ const useLike = () => {
     );
   };
 
-  const getUserLike = async (token) => {
+  const getUserLike = async (media_id, token) => {
     const fetchOptions = {
       method: 'GET',
       headers: {
@@ -199,7 +199,7 @@ const useLike = () => {
     };
 
     return await fetchData(
-      import.meta.env.VITE_MEDIA_API + '/likes/bymedia/user',
+      import.meta.env.VITE_MEDIA_API + '/likes/bymedia/user/' + media_id,
       fetchOptions,
     );
   };
