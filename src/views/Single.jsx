@@ -18,7 +18,7 @@ const Single = () => {
       <h2>{item.title}</h2>
       <p>Owner: {item.username}</p>
       <img src={item.filename} alt={item.title} />
-      <Likes />
+      <Likes media_id={item.media_id} />
       <p>{item.description}</p>
     </div>
   );

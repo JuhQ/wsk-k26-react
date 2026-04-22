@@ -199,7 +199,7 @@ const useLike = () => {
     };
 
     return await fetchData(
-      import.meta.env.VITE_MEDIA_API + '/likes/byuser',
+      import.meta.env.VITE_MEDIA_API + '/likes/bymedia/user',
       fetchOptions,
     );
   };
